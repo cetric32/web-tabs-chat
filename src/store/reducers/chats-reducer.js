@@ -1,11 +1,17 @@
-import { POST_MESSAGE, POST_MESSAGE_SUCCESSFUL } from "../action-const";
+import {
+  POST_MESSAGE,
+  POST_MESSAGE_SUCCESSFUL,
+  POST_OWN_MESSAGE_SUCCESSFUL,
+  SET_PROFILE_SUCCESSFUL,
+} from "../action-const";
 
 const initialState = {
   chats: [],
   profile: {
-    name: "cetric",
-    time: Date.now(),
+    name: "",
+    time: new Date().toUTCString(),
   },
+  myChats: [],
 };
 
 export default function chatsReducer(state = initialState, action) {
@@ -25,6 +31,21 @@ export default function chatsReducer(state = initialState, action) {
           chats: state.chats.concat(action.payload),
         };
       }
+
+    case POST_OWN_MESSAGE_SUCCESSFUL:
+      return {
+        ...state,
+        myChats: state.myChats.concat(action.payload),
+      };
+
+    case SET_PROFILE_SUCCESSFUL:
+      return {
+        ...state,
+        profile: {
+          ...state.profile,
+          name: action.payload,
+        },
+      };
 
     default:
       return state;
