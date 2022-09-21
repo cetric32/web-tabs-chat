@@ -13,3 +13,13 @@ export const readFromStorage = (key) => {
 };
 
 export const Channel = new BroadcastChannel("app-chats");
+
+export function getActualHeight() {
+  var actualHeight =
+    window.innerHeight ||
+    document.documentElement.clientHeight ||
+    document.body.clientHeight ||
+    document.body.offsetHeight;
+
+  return actualHeight;
+}
